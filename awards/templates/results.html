@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="container">
+  <div class="row">
+    {%if got_projects%}
+    {%for got_project in got_projects%}
+    <div class="row">
+      <div class="card m-4" style="width: 18rem;">
+        <a href="#"><img class="card-img-top" src="{{got_project.landing.cdn_url}}" alt="result landing page image"></a>
+        <div class="card-body">
+          <h5 class="card-title">{{got_project.title}}</h5>
+          <p class="card-text">Upload by <b>{{got_project.user.username}}</b></p>
+          <a href="{{got_project.live_site}}" class="btn btn-primary">Visit Site</a>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+    {%else%}
+    <h1 class="text-center">{{message}}</h1>
+    {%endif%}
+  </div>
+</div>
+{%endblock%}
