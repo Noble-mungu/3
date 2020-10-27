@@ -1,0 +1,48 @@
+{% extends '/home/elly/Core/Awards/awards/templates/base.html' %}
+{% block content %}
+<div class="container" style="margin-top:20px;"">
+    <div class="row ">
+        <div class="col-sm-6 col-md-4">
+            
+            <h5 class="user">{{user.username}}</h5>
+            <img src="{{profile.profile_photo.url}}" class="img-thumbnail img-responsive img-fluid" alt="" 
+             style="border-radius: 50%; width:100px; height:100px; border-color: brown; border-width: 50px;">
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <hr>
+            <p>{{profile.bio}}</p>
+           
+        </div>
+        
+        <!-- Edit Profile section -->
+        <div class="col-sm-6 col-md-2">
+                <a href="{%url 'edit_profile'%}" class="btn btn-outline-info btn-sm">Edit Profile</a>
+        </div>
+    </div>
+
+    </div>
+    <div class="row" style="margin-top:30px;">
+        <div class="row">
+            <h3 class="text-center" style="margin-left:500px;">Projects</h3>
+        </div>
+        <!-- Card deck -->
+        <div class="card-deck">
+            {% for single_project in projects %}
+            <!-- Card -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img class="card-img-top" src="{{single_project.image.url}}" alt="{{single_project.title}}">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Card deck -->
+
+    </div>
+</div>
+
+{% endblock %}
