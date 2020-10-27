@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url("https://images.unsplash.com/photo-1493723843671-1d655e66ac1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position-y: center;
+        
+  
+    }
+    
+  </style>
+<div class="container" style="font-family: 'Vast Shadow', cursive; padding-top: 60px;">
+
+  <div class="row">
+    {% if projects %}
+      <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 projects for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if projects %}
+    {% for project in projects %}
+      <div class="col-sm-6 col-md-3">
+          <h1>{{project.title}}</h1>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
