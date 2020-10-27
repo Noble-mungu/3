@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+
+{%block content%}
+<!-- review Modal -->
+<div class="modal fade" id="reviewForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header" >
+      <h5 class="modal-title" id="exampleModalLabel">Post an image</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form enctype='multipart/form-data' class="form-group" action="{% url 'details' current_site.id%}" method="POST">
+  
+        {% csrf_token %}
+        {%bootstrap_form review_form%}
+        <input class="btn btn-outline-success" type="submit" name="" value="Upload">
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<h1 class="text-center"><b>{{current_site.title}}</b></h1>
+<img class="d-block w-100" src="{{current_site.image.url}}" alt="First slide" height="400">
+<div class="text-center mt-3">
+  <h5><i>{{current_site.description}}</i></h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
+        <a href="{{current_site.live_site}}"><button class="btn btn-outline-warning" name="button">Visit site</button></a>
+        <button data-toggle="modal" data-target="#reviewForm" class="btn btn-outline-info mt-2" name="button">Leave a review?</button>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+</div>
+<h4 class="text-center m-4"><u>Comments:</u></h4>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+      {%if project_reviews%}
+      {%for project_review in project_reviews%}
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{project_review.user.profile.avi.cdn_url}}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{project_review.user.username}}</h5>
+              <p class="card-text"><em>{{project_review.comment}}</em></p>
+              <h5>Ratings:</h5>
+              <p class="card-text">Design: {{project_review.design}}</p>
+              <p class="card-text">Useability: {{project_review.useability}}</p>
+              <p class="card-text">Content: {{project_review.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+      {%endif%}
+    <div class="col-md-2">
+
+    </div>
+  </div>
+</div>
+{%endblock%}
