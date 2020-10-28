@@ -26,12 +26,14 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '65p760l6d5b$*e*i+jfbqu9hbeshh&@k=p0#+6-d7sf^=(ghjy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = {
+  '*'
+}
 
 
 # Application definition
