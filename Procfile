@@ -1,1 +1,2 @@
-web: gunicorn awardsapp.wsgi
+release: python manage.py migrate 
+web: gunicorn awardsapp.wsgi --log-file -
